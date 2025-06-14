@@ -1,3 +1,6 @@
+/// Converts a Firestore `Timestamp` object to a millisecond-based Unix epoch time (`Int64`).
+/// - Parameter timestamp: The Firestore `Timestamp` instance to convert.
+/// - Returns: The timestamp as the number of milliseconds since January 1, 1970 (Unix epoch).
 //
 //  FirebaseCollectionSubscriber.swift
 //  iosApp
@@ -51,6 +54,9 @@ class ScoreCollectionSubscription: Subscription {
   }
 }
 
+/// Converts a Firestore `Timestamp` to the number of milliseconds since the Unix epoch (January 1, 1970).
+/// - Parameter timestamp: The Firestore `Timestamp` instance to convert.
+/// - Returns: The number of milliseconds since the Unix epoch as an `Int64`.
 func timestampToMillis(_ timestamp: Timestamp) -> Int64 {
   return Int64(timestamp.dateValue().timeIntervalSince1970 * 1000)
 }
