@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseCore
+import Shared
 
 @main
 struct iOSApp: App {
@@ -10,6 +11,16 @@ struct iOSApp: App {
             ContentView()
         }
     }
+  
+  init() {
+    SharedKt.doInitIosKoin(
+      onKoinStart: {
+        Shared_iosKt.createSwiftLibDependencyModule(
+          factory: SwiftLibDependencyFactory.shared
+        )
+      }
+    )
+  }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {

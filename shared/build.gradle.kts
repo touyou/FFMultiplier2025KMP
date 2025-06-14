@@ -4,7 +4,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    id("com.google.gms.google-services")
     kotlin("plugin.serialization") version "2.1.0"
 }
 
@@ -30,9 +29,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
-            implementation(libs.firebase.analytics)
-            implementation(libs.firebase.common)
-            implementation(libs.firebase.firestore)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(project.dependencies.platform("io.insert-koin:koin-bom:4.0.3"))
+            implementation(libs.koin.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
