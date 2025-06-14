@@ -3,7 +3,7 @@ package com.dev.touyou.ffmultiplier
 /**
  * FirestoreのRepositoryのインターフェース
  */
-interface FirestoreRepository {
+interface FirestoreDataSourceContract {
     fun subscribeToScoreCollection(
         onUpdate: (List<Score>) -> Unit,
         onError: (Throwable) -> Unit

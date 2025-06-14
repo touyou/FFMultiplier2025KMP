@@ -9,8 +9,11 @@ import Foundation
 import FirebaseFirestore
 import Shared
 
-class FirestoreRepositoryImpl: Shared.FirestoreRepository {
-  func subscribeToScoreCollection(onUpdate: @escaping ([Score]) -> Void, onError: @escaping (KotlinThrowable) -> Void) -> any Subscription {
+class FirestoreDataSource: Shared.FirestoreDataSourceContract {
+  func subscribeToScoreCollection(
+    onUpdate: @escaping ([Score]) -> Void,
+    onError: @escaping (KotlinThrowable) -> Void
+  ) -> any Subscription {
     let db = Firestore.firestore()
     let listener = db.collection("scores").addSnapshotListener { querySnapshot, error in
       if let error = error {
@@ -23,7 +26,11 @@ class FirestoreRepositoryImpl: Shared.FirestoreRepository {
         return
       }
       let scores = documents.map { $0.data() }.map { data in
-        Score(userRef: (data["user"] as! DocumentReference).documentID, score: data["score"] as! Int32, updatedAt: timestampToMillis(data["updatedAt"] as! Timestamp))
+        Score(
+          userRef: (data["user"] as! DocumentReference).path,
+          score: data["score"] as! Int32,
+          updatedAt: timestampToMillis(data["updatedAt"] as! Timestamp)
+        )
       }
       onUpdate(scores)
     }

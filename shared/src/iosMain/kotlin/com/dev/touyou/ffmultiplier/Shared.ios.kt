@@ -7,5 +7,5 @@ import org.koin.dsl.module
 actual val platformModule = module {}
 
 fun createSwiftLibDependencyModule(factory: SwiftLibDependencyFactoryContract): Module = module {
-    single { factory.provideFirestoreRepository() } bind FirestoreRepository::class
+    single { factory.provideFirestoreDataSource() } bind FirestoreDataSourceContract::class
 }
