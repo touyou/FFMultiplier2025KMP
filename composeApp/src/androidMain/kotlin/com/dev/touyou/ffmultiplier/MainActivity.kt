@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
             androidContext(this@MainActivity)
         }
 
-
         setContent {
             App()
         }

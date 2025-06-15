@@ -28,13 +28,14 @@ class FirestoreDataSource: Shared.FirestoreDataSourceContract {
         onUpdate([])
         return
       }
-      let scores = documents.map { $0.data() }.map { data in
+      var scores = documents.map { $0.data() }.map { data in
         Score(
           userRef: (data["user"] as! DocumentReference).path,
           score: data["score"] as! Int32,
           updatedAt: timestampToMillis(data["updatedAt"] as! Timestamp)
         )
       }
+      scores.sort { $0.score > $1.score }
       onUpdate(scores)
     }
     
