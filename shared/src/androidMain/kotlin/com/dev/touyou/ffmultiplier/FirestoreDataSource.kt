@@ -1,5 +1,6 @@
 package com.dev.touyou.ffmultiplier
 
+import com.dev.touyou.ffmultiplier.models.Score
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,7 +30,8 @@ class FirestoreDataSource(
                     updatedAt = (data["updatedAt"] as Timestamp).toDate().time
                 )
             }
-            onUpdate(scores)
+            val sortedScores = scores.sortedByDescending { it.score }
+            onUpdate(sortedScores)
         }
 
         return object: Subscription {

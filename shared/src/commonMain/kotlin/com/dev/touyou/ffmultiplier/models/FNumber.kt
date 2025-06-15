@@ -1,4 +1,4 @@
-package com.dev.touyou.ffmultiplier
+package com.dev.touyou.ffmultiplier.models
 
 /**
  * 16進数を表すデータクラス
