@@ -1,8 +1,5 @@
 package com.dev.touyou.ffmultiplier.components
 
-import android.os.Build
-import android.view.WindowInsets
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +16,6 @@ import androidx.compose.ui.unit.Dp
 import com.dev.touyou.ffmultiplier.viewModels.RankingViewModel
 import org.koin.compose.koinInject
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun RankingList(
     innerPadding: PaddingValues
