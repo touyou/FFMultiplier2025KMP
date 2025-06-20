@@ -13,6 +13,6 @@ interface FirestoreDataSourceContract {
     ): Subscription
 }
 
-interface  Subscription {
+interface Subscription {
     fun unsubscribe()
 }

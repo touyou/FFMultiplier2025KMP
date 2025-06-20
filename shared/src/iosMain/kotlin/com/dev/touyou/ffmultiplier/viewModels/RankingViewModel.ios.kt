@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 fun RankingViewModel.observeScores(onNewScores: (List<Score>) -> Unit): Job {
     return viewModelScope.launch {
-        scores.collect { scoreList -> // Use a more descriptive lambda parameter name
+        scores.collect { scoreList ->
             onNewScores(scoreList)
         }
     }
