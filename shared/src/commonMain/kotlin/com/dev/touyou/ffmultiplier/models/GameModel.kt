@@ -57,12 +57,12 @@ class GameModel {
      *
      * After processing the answer, the [currentProblem] is updated to the next problem in the list.
      *
-     * @param answer The [FNumber] representing the player's answer.
+     * @param answerValue The integer representing the player's answer.
      * @return `true` if the answer is correct, `false` otherwise. Returns `false` if there is no current problem.
      */
-    fun answerCurrentProblem(answer: FNumber): Boolean {
+    fun answerCurrentProblem(answerValue: Int): Boolean {
         val problem = currentProblem ?: return false
-        val isCorrect = problem.answer == answer
+        val isCorrect = problem.answer.value == answerValue
         if (isCorrect) {
             score += ScoreSetting.acceptedPoints + ScoreSetting.calculateBonus(combo)
             combo += 1

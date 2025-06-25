@@ -3,19 +3,19 @@ package com.dev.touyou.ffmultiplier.models
 /**
  * 問題のデータクラス
  */
-data class FFProblem(val a: FNumber, val b: FNumber) {
+data class FFProblem(val val1: FNumber, val val2: FNumber) {
     /** 問題の答え */
     val answer: FNumber
-        get() = a * b
+        get() = val1 * val2
 
     companion object {
         /** 問題リストの生成 */
-        fun generateProblem(count: Int): List<FFProblem> {
-            val problems = mutableSetOf<FFProblem>()
-            while (problems.size < count) {
+        var generateProblem: (Int) -> List<FFProblem> = {
+            val problems = mutableListOf<FFProblem>()
+            while (problems.size < it) {
                 problems.add(FFProblem(FNumber.random(), FNumber.random()))
             }
-            return problems.shuffled()
+            problems.shuffled()
         }
     }
 }

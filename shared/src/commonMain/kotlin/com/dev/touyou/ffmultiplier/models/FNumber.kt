@@ -4,6 +4,9 @@ package com.dev.touyou.ffmultiplier.models
  * 16進数を表すデータクラス
  */
 data class FNumber(private var _value: Int): Comparable<FNumber> {
+    val value: Int
+        get() = _value
+
     init {
         require(_value >= 0) { "FNumber value must be non-negative" }
         require(_value <= 15 * 15) { "FNumber value must not exceed 15*15" }
@@ -27,6 +30,10 @@ data class FNumber(private var _value: Int): Comparable<FNumber> {
 
     override fun compareTo(other: FNumber): Int {
         return this._value.compareTo(other._value)
+    }
+
+    fun toHex(): String {
+        return _value.toString(16).uppercase()
     }
 
     companion object {
