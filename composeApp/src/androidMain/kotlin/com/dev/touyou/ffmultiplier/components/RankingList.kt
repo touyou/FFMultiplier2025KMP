@@ -17,9 +17,7 @@ import com.dev.touyou.ffmultiplier.viewModels.RankingViewModel
 import org.koin.compose.koinInject
 
 @Composable
-fun RankingList(
-    innerPadding: PaddingValues
-) {
+fun RankingList() {
     val viewModel: RankingViewModel = koinInject()
     LaunchedEffect(Unit) {
         viewModel.startObservingScores()
@@ -28,7 +26,6 @@ fun RankingList(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(innerPadding)
             .padding(all= Dp(16F))
     ) {
         items(scores) { score ->

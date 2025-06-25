@@ -29,6 +29,7 @@ kotlin {
             implementation(libs.google.firebase.crashlytics)
             implementation(libs.google.firebase.config)
             implementation(libs.koin.android)
+            implementation(libs.navigation.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
