@@ -11,9 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class GameViewModel {
+import kotlinx.coroutines.CoroutineDispatcher
+
+class GameViewModel(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default
+) {
     private val gameModel = GameModel()
-    private val viewModelScope = CoroutineScope(Dispatchers.Default + Job())
+    private val viewModelScope = CoroutineScope(dispatcher + Job())
     private var timerJob: Job? = null
 
     private val _gameTime = MutableStateFlow(60)
@@ -57,8 +61,8 @@ class GameViewModel {
 
     fun submit() {
         if (_userInput.value.isEmpty()) return
-        val answer = FNumber.fromHex(_userInput.value)
-        gameModel.answerCurrentProblem(answer)
+        val answerValue = _userInput.value.toInt(16)
+        gameModel.answerCurrentProblem(answerValue)
         _score.value = gameModel.currentScore
         _currentProblem.value = gameModel.current
         _userInput.value = ""
