@@ -8,6 +8,7 @@ import kotlin.test.assertTrue
 
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
+import kotlin.test.assertFalse
 
 class GameModelTest {
 

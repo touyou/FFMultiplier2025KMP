@@ -19,7 +19,7 @@ fun ProblemDisplay(problem: FFProblem?, userInput: String) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (problem != null) {
-            Text(text = "${problem.a.value0} x ${problem.b.value0}", fontSize = 32.sp)
+            Text(text = "${problem.val1.value0} x ${problem.val2.value0}", fontSize = 32.sp)
         } else {
             Text(text = "Finish!", fontSize = 32.sp)
         }
