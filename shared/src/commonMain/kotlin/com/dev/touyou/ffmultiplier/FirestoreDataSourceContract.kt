@@ -1,6 +1,7 @@
 package com.dev.touyou.ffmultiplier
 
 import com.dev.touyou.ffmultiplier.models.Score
+import com.dev.touyou.ffmultiplier.models.User
 
 /**
  * Interface for the Firestore data source.
@@ -11,6 +12,12 @@ interface FirestoreDataSourceContract {
         onUpdate: (List<Score>) -> Unit,
         onError: (Throwable) -> Unit
     ): Subscription
+
+    fun fetchUser(
+        docsPath: String,
+        onResult: (User?) -> Unit,
+        onError: (Throwable) -> Unit
+    ): Unit
 }
 
 interface Subscription {

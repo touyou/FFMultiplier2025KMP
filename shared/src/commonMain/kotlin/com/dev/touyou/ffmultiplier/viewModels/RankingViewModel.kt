@@ -4,10 +4,14 @@ import androidx.lifecycle.ViewModel
 import com.dev.touyou.ffmultiplier.FirestoreDataSourceContract
 import com.dev.touyou.ffmultiplier.Subscription
 import com.dev.touyou.ffmultiplier.models.Score
+import com.dev.touyou.ffmultiplier.models.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 /**
  * ViewModel for managing and displaying the ranking of scores.
@@ -56,5 +60,17 @@ class RankingViewModel: ViewModel(), KoinComponent {
     fun stopObservingScores() {
         subscription?.unsubscribe()
         subscription = null
+    }
+
+    suspend fun getUser(docsPath: String): User? = suspendCoroutine { cont ->
+        firestoreDataSource.fetchUser(
+            docsPath = docsPath,
+            onResult = { user ->
+                cont.resume(user)
+            },
+            onError = { error ->
+                cont.resumeWithException(error)
+            }
+        )
     }
 }

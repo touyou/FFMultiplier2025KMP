@@ -1,6 +1,7 @@
 package com.dev.touyou.ffmultiplier
 
 import com.dev.touyou.ffmultiplier.models.Score
+import com.dev.touyou.ffmultiplier.models.User
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,6 +39,26 @@ class FirestoreDataSource(
             override fun unsubscribe() {
                 listener.remove()
             }
+        }
+    }
+
+    override fun fetchUser(
+        docsPath: String,
+        onResult: (User?) -> Unit,
+        onError: (Throwable) -> Unit
+    ) {
+        firestore.document(docsPath).get().addOnSuccessListener {
+            val data = it.data ?: run {
+                onResult(null)
+                return@addOnSuccessListener
+            }
+            val user = User(
+                name = data["name"] as String,
+                uuid = data["uuid"] as String
+            )
+            onResult(user)
+        }.addOnFailureListener {
+            onError(it)
         }
     }
 }
