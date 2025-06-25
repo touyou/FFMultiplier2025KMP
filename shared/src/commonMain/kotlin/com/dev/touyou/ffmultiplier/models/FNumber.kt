@@ -34,6 +34,11 @@ data class FNumber(private var _value: Int): Comparable<FNumber> {
         fun random(): FNumber {
             return FNumber((0..15).random())
         }
+
+        /** 16進数の文字列からFNumberを生成する */
+        fun fromHex(hex: String): FNumber {
+            return FNumber(hex.toInt(16))
+        }
     }
 }
 
